@@ -71,3 +71,69 @@ for (let y = 0; y < size; y++) {
 }
 
 console.log(board);
+
+//recursion is a function that calls itself. Here's an example of a recursive function
+function power(base, exponent) {
+    if (exponent === 0) {
+        return 1;
+    } else {
+        return base * power(base, exponent - 1)
+    }
+}
+
+console.log(power(2, 3))
+//returns 8
+
+//another example of recursion, this starts off as given a number, the function can return the sequence of finding the additions and multiplications that produces that number.
+function findSolution(target) {
+    function find(current, history) {
+        if (current === target) {
+            return history;
+        } else if (current > target) {
+            return null;
+        } else {
+            return find(current + 5, `(${history} + 5)`) ||
+            return find(current * 3, `(${history} * 3)`);
+        }
+    }
+    return find(1, "1");
+}
+
+console.log(findSolution(24))
+
+//(((1 * 3) +5) * 3)
+
+//this recursive function example returns the inventory of animals on a farm.
+function printZeroPaddedWithLabel(number, label) {
+    let numberString = String(number);
+    while (numberString.length < 3) {
+        numberString = "0" + numberString;
+    }
+    console.log(`${numberString} ${label}`);
+}
+
+function printFarmInventory(cows, chickens, pigs) {
+    printZeroPaddedWithLabel(cows, "Cows")
+    printZeroPaddedWithLabel(chickens, "Chickens")
+    printZeroPaddedWithLabel(pigs, "Pigs")
+}
+
+printFarmInventory(7, 16, 3)
+
+//here is the same recursive function but refactors to display the concept instead of having to rewrite the same function
+
+function zeroPad(number, width) {
+    let string = String(number);
+    while (string.length < width) {
+        string = "0" + string;
+    }
+    return string;
+}
+
+function farmInventory(cows, chickens, pigs) {
+    console.log(`${zeroPad(cows, 3)} Cows`)
+    console.log(`${zeroPad(chickens, 3)} Chickens`)
+    console.log(`${zeroPad(pigs, 3)} Pigs`)
+}
+
+farmInventory(7, 16, 3)
